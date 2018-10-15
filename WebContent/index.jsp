@@ -95,7 +95,7 @@
 		font-family: BMDOHYEON_ttf;
 		border: 1px gray double;
 		border-radius:50px;
-		
+		box-shadow: 15px 20px 0px rgba(235, 209, 212, 0.5)
 	}
 </style>
 
@@ -113,7 +113,7 @@
 	               		<span class="icon-bar" style="margin-top: 2px"></span>
 	               		<span class="icon-bar"></span>
             		</button>
-            		<a href="index.jsp"><img src="img/main_logo2.png" width="150" height="47" style="background-color: #FFFAE5/* #0F6A8B  #F5EED2*/"></a>
+            		<a href="index.jsp"><img src="img/main_logo.png" width="150" height="47" style="background-color: transparent;/* #0F6A8B  #F5EED2*/"></a>
          		</div> <!-- navbar-header -->
          		
 	         	<div class="collapse navbar-collapse navbar-right" id="myNavbar" style="margin-top: 15px">

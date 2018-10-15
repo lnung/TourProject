@@ -20,7 +20,7 @@
 			//���� 硫��대� 留��곗�� �щ�ㅻ�⑥�� ��
 			$(this).css({
 				'color' : 'black'/* 'rgb(245, 238, 210)' */,/* rgb(15, 106, 139) */
-				'background' : 'rgba(244, 236, 200, 0.5)'/* 'rgba(242, 242, 242, 0.5)' */
+				'background' : 'rgba(217, 217, 217, 0.5)'/* 'rgba(242, 242, 242, 0.5)' */
 			}); //css
 
 		}, function() {
@@ -30,7 +30,7 @@
 			}); //css
 			$('#userMenu').css({
 				'color' : 'black',
-				'background' : '#FFFAE5'/* 'rgb(245, 238, 210)' *//* 'rgb(15, 106, 139)' */
+				'background' : 'transparent'/* 'rgb(245, 238, 210)' *//* 'rgb(15, 106, 139)' */
 			}); //css
 		}); //hover
 
