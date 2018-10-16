@@ -430,26 +430,26 @@ public class TourDao {
 
 	public ArrayList<FestivalVO> getFestivalInfo(String location) throws SQLException { /// v1 festival list
 
-		ArrayList<FestivalVO> list = new ArrayList<>();
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
+	      ArrayList<FestivalVO> list = new ArrayList<>();
+	      Connection conn = null;
+	      PreparedStatement ps = null;
+	      ResultSet rs = null;
 
-		try {
-			conn = getConnect();
-			ps = conn.prepareStatement(ReviewStringQuery.GET_FESTIVAL_INFO);
-			ps.setString(1, location+"%");
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				list.add(new FestivalVO(rs.getString("festival_Name"), rs.getString("festival_Location"),
-						rs.getString("location"), rs.getString("city"), rs.getString("start_Date"),
-						rs.getString("END_DATE"), rs.getString("agency"), rs.getString("img")));
-			}
-		} finally {
-			closeAll(rs, ps, conn);
-		}
-		return list;
-	}// getFestivalInfo 泥좎쭊�벐
+	      try {
+	         conn = getConnect();
+	         ps = conn.prepareStatement(ReviewStringQuery.GET_FESTIVAL_INFO);
+	         ps.setString(1, location+"%");
+	         rs = ps.executeQuery();
+	         while (rs.next()) {
+	            list.add(new FestivalVO(rs.getString("festival_Name"), rs.getString("festival_Location"),
+	                  rs.getString("location"), rs.getString("city"), rs.getString("start_Date"),
+	                  rs.getString("END_DATE"), rs.getString("agency"), rs.getString("img")));
+	         }
+	      } finally {
+	         closeAll(rs, ps, conn);
+	      }
+	      return list;
+	   }// getFestivalInfo 泥좎쭊�벐
 
 	public ArrayList<AttractionVO> getAttraction(String city,String location) throws SQLException { // v2 tourspot list
 		ArrayList<AttractionVO> list = new ArrayList<>();

@@ -42,7 +42,7 @@
 	               		<span class="icon-bar" style="margin-top: 2px"></span>
 	               		<span class="icon-bar"></span>
             		</button>
-            		<img src="img/main_logo2.png" width="150">
+            		<img src="img/main_logo.png" width="150">
          		</div> <!-- navbar-header -->
          		
 	         	<div class="collapse navbar-collapse navbar-right" id="myNavbar" style="margin-top: 15px">
@@ -93,7 +93,15 @@
     <div>
 	    <c:choose>
 	    	<c:when test="${emptyFlag == true || flag == true}">
-	    		<h3 align="center">${spotName}</h3><br><br>
+		    	<div class="col-sm-12">
+		    		<div align="right" class="col-sm-6">
+			    		<h3>${spotName}</h3><br>
+			    	</div>
+			    	
+					<div align="left" class="col-sm-6" style="margin-top: 21px">
+			    		<a href="#"><img src="img/courseAdd.png" width="75"></a>
+			    	</div>
+		    	</div>
 			
 				<div align="right" class="col-sm-12" style="margin-bottom: 10pxl"> 
 					<div align="right" class="col-sm-6">  
