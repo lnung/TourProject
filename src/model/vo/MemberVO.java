@@ -16,7 +16,6 @@ public class MemberVO {
    public MemberVO(){}
    
    public MemberVO(String id) {
-	  courses = new ArrayList<CourseVO>();
       this.id = id;
    }
    
@@ -28,20 +27,17 @@ public class MemberVO {
       this.password = password;
       this.tel = tel;
       this.mail = mail;
-      courses = new ArrayList<CourseVO>();
    }
    public MemberVO(String password, String tel, String mail) {
       super();
       this.password = password;
       this.tel = tel;
       this.mail = mail;
-      courses = new ArrayList<CourseVO>();
    }
    
    public MemberVO(String id, String userName) {
       this.id=id;
       this.userName = userName;
-      courses = new ArrayList<CourseVO>();
    }
 
    public ArrayList<Integer> getScraps() {
@@ -105,7 +101,8 @@ public class MemberVO {
 
    @Override
    public String toString() {
-      return "UserVO [userName=" + userName + ", ssn=" + ssn + ", id=" + id + ", password=" + password + ", tel="
-            + tel + ", mail=" + mail + "]";
+      return "MemberVO [userName=" + userName + ", ssn=" + ssn + ", id=" + id + ", password=" + password + ", tel="
+            + tel + ", mail=" + mail + ", courses=" + courses + ", scraps=" + scraps + "]";
    }
+   
 }

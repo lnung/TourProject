@@ -2,13 +2,7 @@
 	$(function() {
 		//================================ menu ================================
 
-		/*$('#myNavbar>ul li').click(function() {
-			var scrollPosition = $($(this).attr('data-target')).offset().top;
-			$('body, html').animate({
-				scrollTop : scrollPosition
-			}, 500); //animate
-		}); //click
-*/
+		
 		$('#menuSpan .icon-bar').css('background', 'white');
 
 		$('#myNavbar li a').css({
@@ -17,7 +11,6 @@
 		}); //css
 
 		$('#myNavbar li a').hover(function() {
-			//���� 硫��대� 留��곗�� �щ�ㅻ�⑥�� ��
 			$(this).css({
 				'color' : 'black'/* 'rgb(245, 238, 210)' */,/* rgb(15, 106, 139) */
 				'background' : 'rgba(249, 222, 222, 0.5)'/* 'rgba(242, 242, 242, 0.5)' */

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,9 +19,8 @@
 			padding-bottom: 70px;
 			margin-left: 100px;
 			margin-right: 100px;
-			/* padding-left: 25px; */
 		}
-		.courseDiv div{
+		.courseDiv div {
 			border: 1px dotted #e8b4b4; 
 			display: inline-block; 
 			width: 300px; 
@@ -32,19 +32,26 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script>
 		$( function() {
-		  $( "#myCourse" ).sortable({
-		    revert: true
-		  });
-		  $( "#myCourse div" ).disableSelection();
-		} );
+		  	$( "#myCourse" ).sortable({
+				revert: true
+		  	});
+		  	
+		  	$( "#myCourse div" ).disableSelection();
+		  
+		  	$('.saveBtn').click(function () {
+		  		window.open("courseRegister.jsp?id=yun"/* + ${sessionScope.vo.id} */, "Window Title", "width=850, height=450, top=100, left=400");
+				window.opener();
+				});
+			} );
 	</script>
 </head>
 <body>
 	<%@include file="nav.jsp" %>
 	<div style="height: 120px"></div>
 	<div>
+		<h3 style="margin-left: 100px">Recommended Course</h3><br>
 		<div class="courseDiv" style="border-bottom: 1px solid lightgray; margin-bottom: 70px">
-			<h3>추천 코스</h3><br>
+			<br>
 			<div id="my1" style="margin-right: 20px; margin-left: 25px">
 			</div>
 			<div id="my2" style="margin-right: 20px;">
@@ -57,7 +64,7 @@
 			</div>
 		</div>
 		
-		<h3 style="margin-left: 100px">나만의 코스</h3><br>
+		<h3 style="margin-left: 100px">My Course</h3><br>
 		<div class="courseDiv" id="myCourse">
 			<div id="my1" style="margin-right: 20px; margin-left: 25px">
 				<img alt="chicago" src="img/chicago.jpg" class="ui-state-default" width="100%" height="100%" style="float: left">
@@ -76,7 +83,8 @@
 		</div>
 		
 		<div align="center">	
-			<a href="#"><img alt="save" src="img/courseSave.png" style="width: 100px"></a>
+			<a href="#" class="saveBtn"><img alt="save" src="img/recommendedCourse.png" style="width: 120px; margin-right: 20px"></a>
+			<a href="#" class="saveBtn"><img alt="save" src="img/myCourse.png" style="width: 120px"></a>
 		</div>
 	</div>
 </body>
