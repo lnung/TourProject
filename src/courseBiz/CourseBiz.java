@@ -59,7 +59,7 @@ public class CourseBiz {
                iter.remove();
             }
          }
-         if(y>1) ddaengigi(map, y);
+         if(y>0) ddaengigi(map, y);
       }
 
    }

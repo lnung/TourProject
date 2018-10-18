@@ -8,12 +8,19 @@ public class AttractionVO {
    private String city; // ½Ã ±º ±¸
    private String info;
    private String mainImage;
+   private String lon;
+   private String lat;
    private ArrayList<String> images;
    
    
    public AttractionVO() {}
 
-   public AttractionVO(String spotName, String address, String mainImage) {
+   public AttractionVO(String spotName) {
+	super();
+	this.spotName = spotName;
+}
+
+public AttractionVO(String spotName, String address, String mainImage) {
       this.spotName = spotName;
       this.address = address;
       this.mainImage = mainImage;
@@ -77,8 +84,24 @@ public class AttractionVO {
       this.info = info;
    }
 
+   
+   public String getLon() {
+	return lon;
+}
 
-   public ArrayList<String> getImages() {
+public void setLon(String lon) {
+	this.lon = lon;
+}
+
+public String getLat() {
+	return lat;
+}
+
+public void setLat(String lat) {
+	this.lat = lat;
+}
+
+public ArrayList<String> getImages() {
       return images;
    }
 

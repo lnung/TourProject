@@ -34,19 +34,16 @@
 	
 	<c:forEach items="${mcourse.list}" var="mList">
 		<div align="center" class="col-sm-12">
-			<h4 style="margin-left: 100px; margin-top: 20px" align="left">${mList.courseName}</h4><br>
+			<a href="detailCourse.do?courseNum=${mList.courseNum}&&courseName=${mList.courseName}"><h4 style="margin-left: 100px; margin-top: 20px" align="left">${mList.courseName}</h4></a><br>
 			<div class="courseDiv" style="border-bottom: 1px solid lightgray; margin-bottom: 40px">
 				<br>
-				<div id="my1" style="margin-right: 20px; margin-left: 25px">
-				</div>
-				<div id="my2" style="margin-right: 20px;">
-				</div>
-				<div id="my3" style="margin-right: 20px;">
-				</div>
-				<div id="my4" style="margin-right: 20px;">
-				</div>
-				<div id="my5" style="margin-right: 20px;">
-				</div>
+				<c:forEach items="${mList.map}" var="entry"
+					varStatus="status">
+					<div id="${status}" style="margin-right: 20px; margin-left: 25px">
+						<img src="${entry.value.mainImage}" class="ui-state-default"
+							width="100%" height="100%" style="float: left">
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 	</c:forEach>
@@ -57,7 +54,7 @@
 		<c:set var="pb" value="${mcourse.pb}"></c:set>
 		<c:if test="${pb.previousPageGroup}">
 			<ul class="pagination pagination-sm">
-	    		<li><a href="scrap.do?id=yun&&pageNo=${pb.startPageOfPageGroup-1}">&#60;</a></li>
+	    		<li><a href="myCourse.do?id=${vo.id}&&pageNo=${pb.startPageOfPageGroup-1}">&#60;</a></li>
 	  		</ul>
 		</c:if>
 		
@@ -65,7 +62,7 @@
 			<c:choose>
 				<c:when test="${pb.nowPage!=i}">
 					<ul class="pagination">
-		    			<li><a href="scrap.do?id=yun&&pageNo=${i}">${i}</a></li>
+		    			<li><a href="myCourse.do?id=${vo.id}&&pageNo=${i}">${i}</a></li>
 		    		</ul>
 				</c:when>
 				<c:otherwise>
@@ -79,7 +76,7 @@
 		
 		<c:if test="${pb.nextPageGroup}">
 			<ul class="pagination pagination-sm">
-	    		<li><a href="scrap.do?id=yun&&pageNo=${pb.endPageOfPageGroup+1}">&#62;</a></li>
+	    		<li><a href="myCourse.do?id=${vo.id}&&pageNo=${pb.endPageOfPageGroup+1}">&#62;</a></li>
 	  		</ul>
 		</c:if>	
 	</div>			

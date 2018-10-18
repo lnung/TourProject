@@ -107,7 +107,7 @@ public class ReviewService {
 		else pn = Integer.parseInt(pageNo);
 		
 		ArrayList<CourseVO> list = dao.getCourses(id, pn);
-		int total = list.size();
+		int total = dao.getCourseNumber(id);
 		PagingBean pb = new PagingBean(total, pn);
 		return new CListVO(list, pb);
 	}

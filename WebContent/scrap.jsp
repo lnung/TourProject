@@ -94,7 +94,7 @@
 		<c:set var="pb" value="${lvo.pb}"></c:set>
 		<c:if test="${pb.previousPageGroup}">
 			<ul class="pagination pagination-sm">
-	    		<li><a href="scrap.do?id=yun&&pageNo=${pb.startPageOfPageGroup-1}">&#60;</a></li>
+	    		<li><a href="scrap.do?id=${vo.id}&&pageNo=${pb.startPageOfPageGroup-1}">&#60;</a></li>
 	  		</ul>
 		</c:if>
 		
@@ -102,7 +102,7 @@
 			<c:choose>
 				<c:when test="${pb.nowPage!=i}">
 					<ul class="pagination">
-		    			<li><a href="scrap.do?id=yun&&pageNo=${i}">${i}</a></li>
+		    			<li><a href="scrap.do?id=${vo.id}&&pageNo=${i}">${i}</a></li>
 		    		</ul>
 				</c:when>
 				<c:otherwise>
@@ -116,7 +116,7 @@
 		
 		<c:if test="${pb.nextPageGroup}">
 			<ul class="pagination pagination-sm">
-	    		<li><a href="scrap.do?id=yun&&pageNo=${pb.endPageOfPageGroup+1}">&#62;</a></li>
+	    		<li><a href="scrap.do?id=${vo.id}&&pageNo=${pb.endPageOfPageGroup+1}">&#62;</a></li>
 	  		</ul>
 		</c:if>	
 	</div>			

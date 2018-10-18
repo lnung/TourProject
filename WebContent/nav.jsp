@@ -45,6 +45,8 @@
 											class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;내가 쓴 글</a></li>
 									<li><a href="scrap.do?id=${sessionScope.vo.id}"><span
 											class="glyphicon glyphicon-bookmark"></span>&nbsp;&nbsp;스크랩</a></li>
+									<li><a href="myCourse.do?id=${sessionScope.vo.id}"><span
+											class=""></span>&nbsp;&nbsp;나의 코스</a></li>
 									<li><a href="write.jsp"><span
 											class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;글쓰기</a></li>
 									<li><a href="registerupdate.do?id=${sessionScope.vo.id}"><span

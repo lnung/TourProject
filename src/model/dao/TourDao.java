@@ -173,7 +173,22 @@ public class TourDao {
 		}
 		return max;
 	}
-
+	public int getCourseNumber(String id) throws SQLException{
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int num = -1;
+		try {
+			conn = getConnect();
+			ps = conn.prepareStatement("SELECT count(-1) FROM course WHERE id=?");
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			if(rs.next()) num = rs.getInt(1);
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		return num;
+	}
 	public ArrayList<CourseVO> getCourses(String id,int pn) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -202,6 +217,35 @@ public class TourDao {
 				cvo.setCourseNum(rs.getInt("course_num"));
 				cvo.setMap(cmap);
 				cList.add(cvo);
+			}
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		return cList;
+	}
+	
+	public CourseVO getCoursesByNum(int courseNum,String courseName) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		PreparedStatement ps2 = null;
+		ResultSet rs = null;
+		ResultSet rs2 = null;
+		CourseVO course = new CourseVO();
+		// ArrayList<Integer> nList = new ArrayList<>();
+		try {
+			conn = getConnect();
+			ps = conn.prepareStatement(CourseStringQuery.GET_COURSE_BY_NUM);
+			ps.setInt(1, courseNum);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				AttractionVO avo = new AttractionVO(rs.getString("spot_name"));
+				ps2 = conn.prepareStatement(CourseStringQuery.GET_ATTRACTION_BY_SPOT_NAME);
+				rs2 = ps2.executeQuery();
+				while(rs2.next()) {
+					avo.setl
+				}
+				HashMap<Integer, AttractionVO> cmap = new HashMap<Integer, AttractionVO>();
+				cmap.put(rs.getInt("course_order"), )
 			}
 		} finally {
 			closeAll(rs, ps, conn);

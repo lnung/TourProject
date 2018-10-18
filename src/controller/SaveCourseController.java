@@ -18,6 +18,7 @@ public class SaveCourseController implements Controller{
 		String id = request.getParameter("id");
 		String courseName = request.getParameter("courseName");
 		String pageNo = request.getParameter("pageNo");
+		if(pageNo == null) pageNo="1";
 		
 		CourseVO cvo = TourDao.getInstance().makeCourse(id, courseName);
 		CourseVO cvo2 = (CourseVO)request.getSession().getAttribute("cvo");
@@ -25,11 +26,7 @@ public class SaveCourseController implements Controller{
 		
 		TourDao.getInstance().insertCourse(cvo);
 		
-		CListVO mcourse= ReviewService.getInstance().getCourses(id,pageNo);
-		
-		request.setAttribute("mcourse", mcourse);
-		
-		return new ModelAndView("courseRegisterResult.jsp");
+		return new ModelAndView("myCourse.do?id=" + id + "&&pageNo=" + pageNo);
 	}
 
 }
