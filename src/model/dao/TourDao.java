@@ -189,69 +189,78 @@ public class TourDao {
 		}
 		return num;
 	}
-	public ArrayList<CourseVO> getCourses(String id,int pn) throws SQLException {
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		ResultSet rs2 = null;
-		ArrayList<CourseVO> cList = new ArrayList<CourseVO>();
-		// ArrayList<Integer> nList = new ArrayList<>();
-		try {
-			conn = getConnect();
-			ps = conn.prepareStatement(CourseStringQuery.GET_COURSE_BY_ID);
-			ps.setString(1, id);
-			ps.setInt(2, pn);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				CourseVO cvo = null;
-				// nList.add(rs.getInt(1));
-				HashMap<Integer, AttractionVO> cmap = new HashMap<Integer, AttractionVO>();
-				ps = conn.prepareStatement(CourseStringQuery.GET_COURSE);
-				ps.setInt(1, rs.getInt("course_num")); // nList.get(i) ::: courseNum
-				rs2 = ps.executeQuery();
-				while (rs2.next()) {
-					cmap.put(rs2.getInt("course_order"), new AttractionVO(rs2.getString("spot_name"),
-							rs2.getString("address"), rs2.getString("spot_image")));
-				}
-				cvo = new CourseVO(rs.getString("course_name"));
-				cvo.setCourseNum(rs.getInt("course_num"));
-				cvo.setMap(cmap);
-				cList.add(cvo);
-			}
-		} finally {
-			closeAll(rs, ps, conn);
-		}
-		return cList;
-	}
+	public ArrayList<CourseVO> getCourses(String id,int num) throws SQLException{
+	      Connection conn = null;
+	      PreparedStatement ps = null;
+	      PreparedStatement ps2 = null;
+	      ResultSet rs = null;
+	      ResultSet rs2 = null;
+	      ArrayList<CourseVO> cList = new ArrayList<CourseVO>();
+//	      ArrayList<Integer> nList = new ArrayList<>();
+	      try {
+	         conn = getConnect();
+
+	         ps = conn.prepareStatement(CourseStringQuery.GET_COURSE_BY_ID);
+	         ps.setString(1, id);
+	         ps.setInt(2, num);
+	         rs = ps.executeQuery();
+
+	         while(rs.next()) {
+	            CourseVO cvo = null; 
+//	            nList.add(rs.getInt(1));
+	            HashMap<Integer,AttractionVO> cmap = new HashMap<Integer, AttractionVO>();
+	            ps2 = conn.prepareStatement(CourseStringQuery.GET_COURSE_BY_COURSE_NUM);
+	            ps2.setInt(1, rs.getInt("course_num"));      //nList.get(i) ::: courseNum
+	            rs2 = ps2.executeQuery();
+	            while(rs2.next()) {
+	               cmap.put(rs2.getInt("course_order"), 
+	                     new AttractionVO(rs2.getString("spot_name"),
+	                           rs2.getString("spot_image"),
+	                           rs2.getString("lon"),
+	                           rs2.getString("lat")));
+	            }
+	            ps2.close();
+	            cvo = new CourseVO(rs.getString("course_name"));
+	            cvo.setCourseNum(rs.getInt("course_num"));
+	            cvo.setMap(cmap);
+	            cList.add(cvo);
+	         }
+	      }finally {
+	         closeAll(rs, ps, conn);
+	      }
+	      return cList;
+	   }
 	
 	public CourseVO getCoursesByNum(int courseNum,String courseName) throws SQLException {
-		Connection conn = null;
-		PreparedStatement ps = null;
-		PreparedStatement ps2 = null;
-		ResultSet rs = null;
-		ResultSet rs2 = null;
-		CourseVO course = new CourseVO();
-		// ArrayList<Integer> nList = new ArrayList<>();
-		try {
-			conn = getConnect();
-			ps = conn.prepareStatement(CourseStringQuery.GET_COURSE_BY_NUM);
-			ps.setInt(1, courseNum);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				AttractionVO avo = new AttractionVO(rs.getString("spot_name"));
-				ps2 = conn.prepareStatement(CourseStringQuery.GET_ATTRACTION_BY_SPOT_NAME);
-				rs2 = ps2.executeQuery();
-				while(rs2.next()) {
-					avo.setl
-				}
-				HashMap<Integer, AttractionVO> cmap = new HashMap<Integer, AttractionVO>();
-				cmap.put(rs.getInt("course_order"), )
-			}
-		} finally {
-			closeAll(rs, ps, conn);
-		}
-		return cList;
-	}
+        Connection conn = null;
+        PreparedStatement ps = null;
+        PreparedStatement ps2 = null;
+        ResultSet rs = null;
+        ResultSet rs2 = null;
+        HashMap<Integer, AttractionVO> cmap = new HashMap<Integer, AttractionVO>();
+        CourseVO course = new CourseVO(courseNum,courseName,cmap);
+
+        // ArrayList<Integer> nList = new ArrayList<>();
+        try {
+           conn = getConnect();
+           ps = conn.prepareStatement(CourseStringQuery.GET_COURSE_BY_NUM);
+           ps.setInt(1, courseNum);
+           rs = ps.executeQuery();
+           while (rs.next()) {
+              ps2 = conn.prepareStatement(CourseStringQuery.GET_ATTRACTION_BY_SPOT_NAME);
+              ps2.setString(1, rs.getString("spot_name"));
+              ps2.setString(2, rs.getString("spot_name"));
+              rs2 = ps2.executeQuery();
+              if(rs2.next()) {
+                  cmap.put(rs.getInt("course_order"),new AttractionVO(rs2.getString("spot_name"),rs2.getString("spot_image"),rs2.getString("lon"),rs2.getString("lat")));
+              }
+              ps2.close();
+           }
+        } finally {
+           closeAll(rs, ps, conn);
+        }
+        return course; 
+     }
 
 	public int getTotalReview() throws SQLException {
 		Connection conn = null;

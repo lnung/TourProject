@@ -15,9 +15,16 @@ public class MyCourseController implements Controller{
 		
 		CListVO mcourse= ReviewService.getInstance().getCourses(id,pageNo);
 		
-		request.setAttribute("mcourse", mcourse);
+		boolean flag = false;
 		
-		return new ModelAndView("myCourse.jsp");
+		if(mcourse != null) {
+			request.setAttribute("mcourse", mcourse);
+			flag = true;
+		}
+		
+		request.setAttribute("flag", flag);
+		
+		return new ModelAndView("myCourse.jsp?");
 	}
 
 }

@@ -12,6 +12,13 @@ public class CourseVO {
 		this.courseName = courseName;
 	}
 
+	public CourseVO(int courseNum, String courseName, HashMap<Integer, AttractionVO> map) {
+		super();
+		this.courseNum = courseNum;
+		this.courseName = courseName;
+		this.map = map;
+	}
+
 	public String getCourseName() {
 		return courseName;
 	}
